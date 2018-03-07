@@ -1,7 +1,402 @@
-.container {
-  border: 5px solid red;
-  h1 {
-    color: blue;
-    font-size: 40px;
+$header-font: 'Abril Fatface', cursive;
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Open Sans', sans-serif;
+$primary-color: #2c3e50;
+$secondary-color: #c0392b;
+$accent-color: #27ae60;
+
+$not-quite-white: #ecf0f1;
+$plain-old-white: #ffffff;
+$custom-yellow: #f1c40f;
+$spinner-blue: #2980b9;
+
+$small-screen-width: 480px;
+$footer-break-point: 515px;
+
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.display-none {
+  display: none;
+}
+
+.display {
+  display: block;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.landing-container {
+  height: 100vh;
+  background:
+    linear-gradient(
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.65)
+    ),
+  url(/images/openeye.jpg);
+  filter: grayscale(15%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  .landing-container-elements {
+    @include vertical-center;
+    text-align: center;
+    @media screen and (max-height: 500px) {
+      top: 25%;
+      transform: translateY(-25%);
+    }
+    .landing-header {
+      .coffee-finder {
+        font-family: $header-font;
+        font-size: 7rem;
+        letter-spacing: 3px;
+        margin: 0;
+        color: $primary-color;
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 4rem;
+        }
+      }
+      .fa-coffee {
+        color: $accent-color;
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 3em;
+        }
+      }
+      .triangle {
+        font-family: $primary-font;
+        font-size: 3em;
+        margin-top: 0.5em;
+        color: $primary-color;
+        text-transform: uppercase;
+        letter-spacing: 15px;
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 1em;
+        }
+      }
+    }
+  }
+  .callout {
+    font-family: $secondary-font;
+    font-size: 1.5em;
+    color: $secondary-color;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    @media screen and (max-width: $small-screen-width) {
+      font-size: 1em;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    .call-to-action {
+      margin-bottom: 0;
+    }
+    .arrow-icon {
+      padding: 0.5em 0 0.25em 0;
+    }
+  }
+}
+
+.quiz-container {
+  height: 100vh;
+  width: 100vw;
+  background: $not-quite-white;
+  .questions-container {
+    @include vertical-center;
+    font-family: $secondary-font;
+    font-size: 1.5em;
+    margin: 0 3em;
+    text-align: center;
+    .questions {
+      color: $primary-color;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
+      display: inline-block;
+      @media screen and (max-width: 600px) {
+        display: block;
+      }
+    }
+    .contain-period {
+      display: inline-block;
+      @media screen and (max-width: 600px) {
+        display: block;
+      }
+      .period {
+        margin-left: .25em;
+      }
+    }
+    .select-container {
+      display: inline-flex;
+      border-bottom: 3px solid $secondary-color;
+      height: 30px;
+      width: 150px;
+      padding: 0 10px;
+      margin: 0 5px 5px 10px;
+      cursor: pointer;
+      @media screen and (max-width: 600px) {
+        margin: 0 auto;
+      }
+    }
+    .select-options {
+      display: none;
+      list-style-type: none;
+      color: $plain-old-white;
+      margin-top: 0;
+      padding: 10px;
+      &:hover {
+        cursor: pointer;
+      }
+      .option {
+        margin: 0.25em 0;
+        background: $custom-yellow;
+        padding: 10px;
+        margin: 0;
+        &:hover {
+          background: lighten($custom-yellow, 15%);
+        }
+      }
+    }
+  }
+}
+
+.spinner-container {
+  height: 100vh;
+  width: 100vw;
+  .spinner {
+      border: 16px solid $not-quite-white;
+      border-top: 16px solid $spinner-blue;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+      @include vertical-center;
+  }
+}
+
+// animate spinner
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.suggestion-container {
+  height: 66vh;
+  display: none;
+  @media screen and (max-width: $small-screen-width) {
+    height: 50vh;
+  }
+  width: 100vw;
+  text-align: center;
+  .center-suggestion-info {
+    @include vertical-center;
+    .suggestion-text {
+      padding: 0 0 1em 0;
+      .suggestion-header {
+        font-family: $primary-font;
+        font-size: 1.5em;
+        color: $secondary-color;
+      }
+      .shop-name {
+        font-family: $header-font;
+        font-size: 7em;
+        margin: 0;
+        color: $primary-color;
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 4em;
+        }
+      }
+      .shop-city {
+        font-family: $primary-font;
+        font-size: 1.5em;
+        color: $secondary-color;
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 1em;
+          margin-bottom: 0;
+        }
+      }
+    }
+    .info-button-container {
+      margin-top: 1em;
+      box-sizing: border-box;
+      .info-button {
+        padding: 1em 2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 1.5em;
+        font-family: $primary-font;
+        color: $primary-color;
+        width: auto;
+        -webkit-font-smoothing: antialiased;
+        @media screen and (max-width: 600px) {
+          font-size: 1rem;
+          display: block;
+          margin: 0 auto;
+        }
+        &:hover {
+          color: $plain-old-white;
+          background: $secondary-color;
+        }
+      }
+      .info-button:last-of-type {
+        margin-left: -5px;
+        @media screen and (max-width: 275px) {
+          margin: 0 auto;
+        }
+      }
+      .website {
+        width: 8em;
+        display: inline-block;
+        margin: 0;
+        border: 2px solid $accent-color;
+        &:hover {
+          border: 2px solid $secondary-color;
+        }
+        @media screen and (max-width: $small-screen-width) {
+          width: 4em;
+        }
+      }
+      .map {
+        width: 8em;
+        display: inline-block;
+        margin: 0;
+        border: 2px solid $accent-color;
+        &:hover {
+          border: 2px solid $secondary-color;
+        }
+        @media screen and (max-width: $small-screen-width) {
+          width: 4em;
+        }
+      }
+    }
+    .try-again-container {
+      margin-top: 2em;
+      &:hover {
+        cursor: pointer;
+      }
+      .try-again-arrow {
+        display: inline-block;
+        margin-right: 0.25em;
+        animation: shake 4s ease infinite;
+        color: $secondary-color;
+        @media screen and (max-width: $small-screen-width) {
+          display: none;
+        }
+      }
+      .try-again-text {
+        display: inline-block;
+        font-family: $secondary-font;
+        font-size: 1.25em;
+        color: $secondary-color;
+        position: relative;
+        top: 50%;
+        transform: translateY(-20%);
+        padding-bottom: 0.2em;
+        box-sizing: border-box;
+        border-bottom: 2px solid transparent;
+        &:hover {
+          border-bottom: 2px solid $accent-color;
+        }
+        @media screen and (max-width: $small-screen-width) {
+          font-size: 1em;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  height: 34vh;
+  .footer-top-half {
+    height: 66%;
+    text-align: center;
+    background: $accent-color;
+    @media screen and (max-width: $footer-break-point) {
+      height: 10vh;
+    }
+    .footer-coffee-icon {
+      @include vertical-center;
+      color: #f1c40f;
+      @media screen and (max-width: $footer-break-point) {
+        font-size: 2rem;
+      }
+    }
+  }
+  .footer-bottom-half {
+    height: 34%;
+    background: $primary-color;
+    text-align: center;
+    @media screen and (max-width: $footer-break-point) {
+      height: 40vh;
+    }
+    .footer-bottom-container {
+      @include vertical-center;
+      .footer-social-icon {
+        color: $not-quite-white;
+        margin: 0 0.25em;
+        &:hover {
+          color: $accent-color;
+        }
+      }
+      .hidden-icons {
+        display: none;
+        @media screen and (max-width: $footer-break-point) {
+          display: block;
+        }
+        .hidden-icons-left {
+          @media screen and (max-width: $footer-break-point) {
+            display: inline-block;
+          }
+        }
+        .hidden-icons-right {
+          @media screen and (max-width: $footer-break-point) {
+            display: inline-block;
+          }
+        }
+      }
+      .footer-icons-left {
+        display: inline-block;
+        @media screen and (max-width: $footer-break-point) {
+          display: none;
+        }
+      }
+      .created-by {
+        display: inline-block;
+        margin: 0 2em;
+        @media screen and (max-width: $footer-break-point) {
+          display: block;
+        }
+        .created-text {
+          color: $not-quite-white;
+          font-family: $primary-font;
+        }
+        .site-link {
+          color: $not-quite-white;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+            text-underline-position: under;
+          }
+        }
+      }
+      .footer-icons-right {
+        display: inline-block;
+        @media screen and (max-width: $footer-break-point) {
+          display: none;
+        }
+      }
+    }
   }
 }
