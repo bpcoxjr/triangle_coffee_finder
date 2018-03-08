@@ -221,6 +221,7 @@ html, body {
         font-family: $primary-font;
         font-size: 1.5em;
         color: $secondary-color;
+        margin-top: 0;
         @media screen and (max-width: $small-screen-width) {
           font-size: 1em;
           margin-bottom: 0;

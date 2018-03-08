@@ -216,7 +216,6 @@ $(document).ready(function() {
   };
 
   const findDurhamCoffee = () => {
-    console.log('finding durham coffee...');
     if (userAnswers.wifi === 'not important' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
@@ -257,6 +256,42 @@ $(document).ready(function() {
 
   const findRaleighCoffee = () => {
     console.log('finding raleigh coffee...');
+    if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="brew"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="sola"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="morning times"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="new world"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="jubala"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="benelux"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="liquid state"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="sir walter"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="sommeliers roast"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'not important' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="forty two"]');
+      setStoreTemplate(link);
+    } else {
+      var link = document.querySelector('link[title="no match"]');
+      setStoreTemplate(link);
+    }
   };
 
 });
