@@ -207,6 +207,7 @@ html, body {
         font-family: $primary-font;
         font-size: 1.5em;
         color: $secondary-color;
+        margin: 0 1.5em;
       }
       .shop-name {
         font-family: $header-font;
@@ -319,31 +320,29 @@ html, body {
 }
 
 .footer {
-  height: 34vh;
+  display: grid;
   .footer-top-half {
-    height: 66%;
     text-align: center;
     background: $accent-color;
-    @media screen and (max-width: $footer-break-point) {
-      height: 10vh;
-    }
-    .footer-coffee-icon {
-      @include vertical-center;
-      color: #f1c40f;
-      @media screen and (max-width: $footer-break-point) {
-        font-size: 2rem;
+    .coffee-icon-container {
+      padding: 1em;
+      .footer-coffee-icon {
+        color: #f1c40f;
+        @media screen and (max-width: $footer-break-point) {
+          font-size: 2rem;
+        }
       }
     }
   }
   .footer-bottom-half {
-    height: 34%;
     background: $primary-color;
     text-align: center;
-    @media screen and (max-width: $footer-break-point) {
-      height: 40vh;
-    }
     .footer-bottom-container {
-      @include vertical-center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1em;
       .footer-social-icon {
         color: $not-quite-white;
         margin: 0 0.25em;
@@ -355,6 +354,9 @@ html, body {
         display: none;
         @media screen and (max-width: $footer-break-point) {
           display: block;
+          .hidden-icon {
+            margin: 0.25em;
+          }
         }
         .hidden-icons-left {
           @media screen and (max-width: $footer-break-point) {
@@ -378,6 +380,7 @@ html, body {
         margin: 0 2em;
         @media screen and (max-width: $footer-break-point) {
           display: block;
+          margin: 0;
         }
         .created-text {
           color: $not-quite-white;
@@ -402,17 +405,8 @@ html, body {
   }
 }
 
-//404 styles
-$header-font: 'Abril Fatface', cursive;
-$primary-font: 'Montserrat', sans-serif;
-$secondary-font: 'Open Sans', sans-serif;
 
-$primary-color: #2c3e50;
-$secondary-color: #c0392b;
-$accent-color: #27ae60;
-$plain-old-white: #ffffff;
-$custom-yellow: #f1c40f;
-
+// 404 styles
 .marketing-site-hero {
   background:
     linear-gradient(

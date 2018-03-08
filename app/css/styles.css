@@ -162,7 +162,8 @@ html, body {
       .suggestion-container .center-suggestion-info .suggestion-text .suggestion-header {
         font-family: "Montserrat", sans-serif;
         font-size: 1.5em;
-        color: #c0392b; }
+        color: #c0392b;
+        margin: 0 1.5em; }
       .suggestion-container .center-suggestion-info .suggestion-text .shop-name {
         font-family: "Abril Fatface", cursive;
         font-size: 7em;
@@ -256,33 +257,26 @@ html, body {
             margin-top: 0; } }
 
 .footer {
-  height: 34vh; }
+  display: grid; }
   .footer .footer-top-half {
-    height: 66%;
     text-align: center;
     background: #27ae60; }
-    @media screen and (max-width: 515px) {
-      .footer .footer-top-half {
-        height: 10vh; } }
-    .footer .footer-top-half .footer-coffee-icon {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #f1c40f; }
-      @media screen and (max-width: 515px) {
-        .footer .footer-top-half .footer-coffee-icon {
-          font-size: 2rem; } }
+    .footer .footer-top-half .coffee-icon-container {
+      padding: 1em; }
+      .footer .footer-top-half .coffee-icon-container .footer-coffee-icon {
+        color: #f1c40f; }
+        @media screen and (max-width: 515px) {
+          .footer .footer-top-half .coffee-icon-container .footer-coffee-icon {
+            font-size: 2rem; } }
   .footer .footer-bottom-half {
-    height: 34%;
     background: #2c3e50;
     text-align: center; }
-    @media screen and (max-width: 515px) {
-      .footer .footer-bottom-half {
-        height: 40vh; } }
     .footer .footer-bottom-half .footer-bottom-container {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%); }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1em; }
       .footer .footer-bottom-half .footer-bottom-container .footer-social-icon {
         color: #ecf0f1;
         margin: 0 0.25em; }
@@ -309,7 +303,8 @@ html, body {
         margin: 0 2em; }
         @media screen and (max-width: 515px) {
           .footer .footer-bottom-half .footer-bottom-container .created-by {
-            display: block; } }
+            display: block;
+            margin: 0; } }
         .footer .footer-bottom-half .footer-bottom-container .created-by .created-text {
           color: #ecf0f1;
           font-family: "Montserrat", sans-serif; }
