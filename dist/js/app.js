@@ -30,9 +30,9 @@ $(document).ready(function () {
   });
 
   $('.option-one').on('click', function () {
-    var feelingChoice = $(this).text();
-    $('#select-container-one').html(feelingChoice).css({ 'width': 'auto', 'background': '#f1c404' });
-    userAnswers.feeling = feelingChoice;
+    var locationChoice = $(this).text();
+    $('#select-container-one').html(locationChoice).css({ 'width': 'auto', 'background': '#f1c404' });
+    userAnswers.location = locationChoice;
     showQuestionTwo();
   });
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
     $('#question-three-options').fadeOut();
     setTimeout(function () {
       $('#question-three-container').addClass('fadeOutUp');
-    });
+    }, 500);
     setTimeout(function () {
       $('#question-three-container').addClass('display-none');
       $('#question-four-container').addClass('fadeInUp').removeClass('display-none');
@@ -95,35 +95,169 @@ $(document).ready(function () {
     $('#question-four-options').fadeIn(500);
   });
 
+  // new option 4 click method
   $('.option-four').on('click', function () {
-    var locationChoice = $(this).text();
-    $('#select-container-four').html(locationChoice).css({ 'width': 'auto', 'background': '#f1c404' });
-    userAnswers.location = locationChoice;
+    var feelingChoice = $(this).text();
+    $('#select-container-four').html(feelingChoice).css({ 'width': 'auto', 'background': '#f1c404' });
+    userAnswers.feeling = feelingChoice;
+    showQuestionFive();
+  });
+
+  // option 5 stuff...
+  var showQuestionFive = function showQuestionFive() {
+    $('#question-four-options').fadeOut();
+    setTimeout(function () {
+      $('#question-four-container').addClass('fadeOutUp');
+    }, 500);
+    setTimeout(function () {
+      $('#question-four-container').addClass('display-none');
+      $('#question-five-container').addClass('fadeInUp').removeClass('display-none');
+    }, 1000);
+  };
+
+  $('#select-container-five').on('click', function () {
+    $('#question-five-options').fadeIn(500);
+  });
+
+  $('.option-five').on('click', function () {
+    var seatingChoice = $(this).text();
+    $('#select-container-five').html(seatingChoice).css({ 'width': 'auto', 'background': '#f1c404' });
+    userAnswers.seating = seatingChoice;
     showCoffeeShopSuggestion();
+    console.log(userAnswers);
   });
 
   var showCoffeeShopSuggestion = function showCoffeeShopSuggestion() {
     $('#question-four-options').fadeOut(500);
-    $('#quiz-container').fadeOut(1000);
-    $('#spinner-container').removeClass('display-none');
-    setRandomSuggestionHeader();
+    $('#landing-container').fadeOut(500);
+    $('#quiz-container').fadeOut(500);
+    $('#spinner-container').fadeIn(500);
     setTimeout(function () {
-      $('#quiz-container').addClass('display-none');
-      $('#spinner-container').fadeOut().addClass('display-none');;
-      $('#suggestion-container').fadeIn(2000);
+      $('#spinner-container').fadeOut(100);
+      determineSuggestion();
+      $('#suggestion-container').show(500);
+      setRandomSuggestionHeader();
     }, 3000);
   };
 
+  /*** array to store random headers for suggestions ***/
   var headersArray = ["We suggest checking out", "Our strongest recommendation is", "You're going to love", "You should try", "Shoot on over to", "Head on down to", "Slide on over to", "We bet you'll really like", "The best vibe for you is at"];
 
+  /*** generate a random header for suggestion ***/
   var setRandomSuggestionHeader = function setRandomSuggestionHeader() {
     var randomArrayPosition = Math.floor(Math.random() * (headersArray.length - 1));
-    console.log('random: ', randomArrayPosition);
     $('#suggestion-header').html(headersArray[randomArrayPosition]);
   };
 
-  $('.try-again-container').on('click', function () {
+  /*** reset app ***/
+  $(document.body).on('click', '.try-again-container', function () {
     location.reload();
-    $(document).scrollTop(0);
   });
+
+  setStoreTemplate = function setStoreTemplate(link) {
+    console.log('store template is: ', link);
+    var template = link.import.querySelector('template');
+    var clone = document.importNode(template.content, true);
+    document.querySelector('#suggestion-container').appendChild(clone);
+  };
+
+  var determineSuggestion = function determineSuggestion() {
+    console.log('determining suggestion...');
+    if (userAnswers.location === 'Chapel Hill/Carrboro') {
+      findChapelHillCarrboroCoffee();
+    } else if (userAnswers.location === 'Durham') {
+      findDurhamCoffee();
+    } else {
+      findRaleighCoffee();
+    }
+  };
+
+  var produceRandomNumber = function produceRandomNumber() {
+    var randomNumber = Math.random();
+    return randomNumber;
+  };
+
+  var findChapelHillCarrboroCoffee = function findChapelHillCarrboroCoffee() {
+    if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      var _decidingNum = produceRandomNumber();
+      if (_decidingNum > 0.5) {
+        var link = document.querySelector('link[title="open eye"]');
+      } else {
+        var link = document.querySelector('link[title="looking glass cafe"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="carolina coffee shop"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="joe van gogh ch"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'not important' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="caffe driade"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="bread and butter"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="market street"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="perennial"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="gray squirrel"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="coco bean"]');
+      }
+      setStoreTemplate(link);
+    } else {
+      var link = document.querySelector('link[title="no match"]');
+      setStoreTemplate(link);
+    }
+  };
+
+  var findDurhamCoffee = function findDurhamCoffee() {
+    console.log('finding durham coffee...');
+    if (userAnswers.wifi === 'not important' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="baby scratch"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="dulce"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="parker and otis"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="cocoa cinnamon"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="bean traders"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="triangle"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="kaffeinate"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="joe van gogh durham"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="saladelia"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="pine cone"]');
+      setStoreTemplate(link);
+    } else {
+      var link = document.querySelector('link[title="no match"]');
+      setStoreTemplate(link);
+    }
+  };
+
+  var findRaleighCoffee = function findRaleighCoffee() {
+    console.log('finding raleigh coffee...');
+  };
 });

@@ -400,3 +400,89 @@ html, body {
     }
   }
 }
+
+//404 styles
+$header-font: 'Abril Fatface', cursive;
+$primary-font: 'Montserrat', sans-serif;
+$secondary-font: 'Open Sans', sans-serif;
+
+$primary-color: #2c3e50;
+$secondary-color: #c0392b;
+$accent-color: #27ae60;
+$plain-old-white: #ffffff;
+$custom-yellow: #f1c40f;
+
+.marketing-site-hero {
+  background:
+    linear-gradient(
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.85)
+    ),
+  url(/images/coffee_beans.jpg) top right no-repeat;
+  filter: grayscale(15%);
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 40em) {
+    background-position: center center;
+  }
+}
+
+.marketing-site-hero-content {
+  position: relative;
+  transform: translateY(-3em);
+  max-width: 100vw;
+  margin: 0 auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  background: $accent-color;
+  border-bottom: 1em solid $secondary-color;
+  border-top: 1em solid $custom-yellow;
+  .message-content {
+    margin: 1em auto 2em;
+    h1 {
+      font-family: $header-font;
+      font-size: 4rem;
+      color: $primary-color;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .subheader {
+      font-family: $primary-font;
+      font-size: 1em;
+      color: $plain-old-white;
+      margin-bottom: 1em;
+    }
+    .button {
+      text-transform: uppercase;
+      font-family: $secondary-font;
+      font-size: 1em;
+      -webkit-font-smoothing: antialiased;
+      background: $secondary-color;
+      color: $plain-old-white;
+      text-decoration: none;
+      border: none;
+      margin-bottom: 0;
+      padding: 1em 1.5em;
+      &:hover {
+        background: lighten($secondary-color, 5%);
+      }
+    }
+  }
+  @media screen and (min-width: 40em) {
+    padding-left: 50%;
+  }
+}
+.marketing-site-hero-content:before {
+  background: none;
+  border: 3em solid $primary-color;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7em;
+  pointer-events: none;
+}
