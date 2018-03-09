@@ -3,14 +3,18 @@ $(document).ready(function() {
 
   /*** loading animations ***/
   setTimeout(function() {
-    $('.coffee-finder').addClass('bounceInDown');
+    $('.coffee-finder').addClass('bounceInLeft');
+  }, 150);
+
+  setTimeout(function() {
+    $('.landing-coffee-icon').addClass('bounceInDown');
   }, 100);
 
   setTimeout(function() {
-    $('.landing-coffee-icon').addClass('bounceInLeft');
+    $('.triangle').addClass('bounceInUp');
   }, 50);
 
-  $('.callout').fadeIn(2500);
+  $('.callout').css('display', 'flex').fadeIn(2500);
   /*** end loading animations ***/
 
   // array to store user answers
@@ -21,6 +25,9 @@ $(document).ready(function() {
     $('html, body').animate( {
       scrollTop: $('#quiz-container').offset().top
     }, 500);
+    /* doing work here */
+    $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
+    $('#question-number').text('1');
   });
 
   $('#select-container-one').on('click', function() {
@@ -29,12 +36,14 @@ $(document).ready(function() {
 
   $('.option-one').on('click', function() {
     let locationChoice = $(this).text();
+    console.log('location choice: ', locationChoice);
     $('#select-container-one').html(locationChoice).css({'width': 'auto', 'background': '#f1c404'});
     userAnswers.location = locationChoice;
     showQuestionTwo();
   });
 
   const showQuestionTwo = () => {
+    $('#question-number').text('2');
     $('#question-one-options').fadeOut();
     setTimeout(function() {
       $('#question-one-container').addClass('fadeOutUp');
@@ -57,6 +66,7 @@ $(document).ready(function() {
   });
 
   const showQuestionThree = () => {
+    $('#question-number').text('3');
     $('#question-two-options').fadeOut();
     setTimeout(function() {
       $('#question-two-container').addClass('fadeOutUp');
@@ -79,6 +89,7 @@ $(document).ready(function() {
   });
 
   const showQuestionFour = () => {
+    $('#question-number').text('4');
     $('#question-three-options').fadeOut();
     setTimeout(function() {
       $('#question-three-container').addClass('fadeOutUp');
@@ -103,6 +114,7 @@ $(document).ready(function() {
 
   // option 5 stuff...
   const showQuestionFive = () => {
+    $("#question-number").text('5');
     $('#question-four-options').fadeOut();
     setTimeout(function() {
       $('#question-four-container').addClass('fadeOutUp');
@@ -129,13 +141,16 @@ $(document).ready(function() {
     $('#question-four-options').fadeOut(500);
     $('#landing-container').fadeOut(500);
     $('#quiz-container').fadeOut(500);
-    $('#spinner-container').fadeIn(500);
+    $('#spinner-container').css('display', 'flex').fadeIn(500);
     setTimeout(function() {
-      $('#spinner-container').fadeOut(100);
       determineSuggestion();
-      $('#suggestion-container').show(500);
       setRandomSuggestionHeader();
+      $('#spinner-container').fadeOut(500);
+      $('#suggestion-container').css('display', 'flex').fadeIn(500);
     }, 3000);
+    $('html, body').animate( {
+      scrollTop: $('#quiz-container').offset().top
+    }, 500);
   };
 
   /*** array to store random headers for suggestions ***/
