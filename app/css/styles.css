@@ -104,7 +104,6 @@ html, body {
       font-family: "Open Sans", sans-serif;
       color: #2c3e50; }
       .quiz-container .quiz-subcontainer .counter .question-number {
-        border: 1px solid red;
         display: inline-block; }
       .quiz-container .quiz-subcontainer .counter .slash {
         display: inline-block;
@@ -278,9 +277,9 @@ html, body {
     border-top: 1.75vmax solid #c0392b; }
     .footer .footer-bottom-half .footer-bottom-container {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       margin: 1em; }
       .footer .footer-bottom-half .footer-bottom-container .footer-social-icon {
         color: #ecf0f1;
