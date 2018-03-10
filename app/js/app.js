@@ -25,9 +25,19 @@ $(document).ready(function() {
     $('html, body').animate( {
       scrollTop: $('#quiz-container').offset().top
     }, 500);
-    /* doing work here */
     $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
     $('#question-number').text('1');
+  });
+
+  // fade in first question if scrolled to instead of 'clicked to'
+  $(window).scroll(function() {
+    let scrollTop = $(window).scrollTop();
+    let landingContainerHeight = $('#landing-container').outerHeight();
+    if (scrollTop > landingContainerHeight) {
+      console.log('showing quiz');
+      $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
+      $('#question-number').text('1');
+    }
   });
 
   $('#select-container-one').on('click', function() {
