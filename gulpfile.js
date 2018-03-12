@@ -50,6 +50,12 @@ gulp.task("html", function() {
   .pipe(gulp.dest("dist"))
 });
 
+gulp.task("html templates", function() {
+  return gulp.src("app/templates/**/*.html")
+  .pipe(minifyHTML({collapseWhitespace: true}))
+  .pipe(gulp.dest("dist/templates"))
+});
+
 // optimize images
 gulp.task("images", function() {
   return gulp.src("app/images/**/*.+(png|jpg|gif|svg)")
@@ -124,7 +130,7 @@ gulp.task('clean:dist', function() {
 // main build task for constructing the dist folder
 gulp.task('build', ['browserSync'], function(callback) {
   runSequence('clean:dist',
-    ['sass', 'babel', 'useref', 'js-hint', 'html', 'images', 'fonts'],
+    ['sass', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts'],
     callback
   )
   gulp.watch('dist/index.html', browserSync.reload);

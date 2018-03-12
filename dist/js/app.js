@@ -5,14 +5,18 @@ $(document).ready(function () {
 
   /*** loading animations ***/
   setTimeout(function () {
-    $('.coffee-finder').addClass('bounceInDown');
+    $('.coffee-finder').addClass('bounceInLeft');
+  }, 150);
+
+  setTimeout(function () {
+    $('.landing-coffee-icon').addClass('bounceInDown');
   }, 100);
 
   setTimeout(function () {
-    $('.landing-coffee-icon').addClass('bounceInLeft');
+    $('.triangle').addClass('bounceInUp');
   }, 50);
 
-  $('.callout').fadeIn(2500);
+  $('.callout').css('display', 'flex').fadeIn(2500);
   /*** end loading animations ***/
 
   // array to store user answers
@@ -23,6 +27,19 @@ $(document).ready(function () {
     $('html, body').animate({
       scrollTop: $('#quiz-container').offset().top
     }, 500);
+    $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
+    $('#question-number').text('1');
+  });
+
+  // fade in first question if scrolled to instead of 'clicked to'
+  $(window).scroll(function () {
+    var scrollTop = $(window).scrollTop();
+    var landingContainerHeight = $('#landing-container').outerHeight();
+    if (scrollTop > landingContainerHeight) {
+      console.log('showing quiz');
+      $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
+      $('#question-number').text('1');
+    }
   });
 
   $('#select-container-one').on('click', function () {
@@ -31,12 +48,14 @@ $(document).ready(function () {
 
   $('.option-one').on('click', function () {
     var locationChoice = $(this).text();
+    console.log('location choice: ', locationChoice);
     $('#select-container-one').html(locationChoice).css({ 'width': 'auto', 'background': '#f1c404' });
     userAnswers.location = locationChoice;
     showQuestionTwo();
   });
 
   var showQuestionTwo = function showQuestionTwo() {
+    $('#question-number').text('2');
     $('#question-one-options').fadeOut();
     setTimeout(function () {
       $('#question-one-container').addClass('fadeOutUp');
@@ -59,6 +78,7 @@ $(document).ready(function () {
   });
 
   var showQuestionThree = function showQuestionThree() {
+    $('#question-number').text('3');
     $('#question-two-options').fadeOut();
     setTimeout(function () {
       $('#question-two-container').addClass('fadeOutUp');
@@ -81,6 +101,7 @@ $(document).ready(function () {
   });
 
   var showQuestionFour = function showQuestionFour() {
+    $('#question-number').text('4');
     $('#question-three-options').fadeOut();
     setTimeout(function () {
       $('#question-three-container').addClass('fadeOutUp');
@@ -105,6 +126,7 @@ $(document).ready(function () {
 
   // option 5 stuff...
   var showQuestionFive = function showQuestionFive() {
+    $("#question-number").text('5');
     $('#question-four-options').fadeOut();
     setTimeout(function () {
       $('#question-four-container').addClass('fadeOutUp');
@@ -131,13 +153,16 @@ $(document).ready(function () {
     $('#question-four-options').fadeOut(500);
     $('#landing-container').fadeOut(500);
     $('#quiz-container').fadeOut(500);
-    $('#spinner-container').fadeIn(500);
+    $('#spinner-container').css('display', 'flex').fadeIn(500);
     setTimeout(function () {
-      $('#spinner-container').fadeOut(100);
       determineSuggestion();
-      $('#suggestion-container').show(500);
       setRandomSuggestionHeader();
+      $('#spinner-container').fadeOut(500);
+      $('#suggestion-container').css('display', 'flex').fadeIn(500);
     }, 3000);
+    $('html, body').animate({
+      scrollTop: $('#quiz-container').offset().top
+    }, 500);
   };
 
   /*** array to store random headers for suggestions ***/
@@ -218,7 +243,6 @@ $(document).ready(function () {
   };
 
   var findDurhamCoffee = function findDurhamCoffee() {
-    console.log('finding durham coffee...');
     if (userAnswers.wifi === 'not important' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
@@ -259,5 +283,41 @@ $(document).ready(function () {
 
   var findRaleighCoffee = function findRaleighCoffee() {
     console.log('finding raleigh coffee...');
+    if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="brew"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="sola"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="morning times"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      decidingNum = produceRandomNumber();
+      if (decidingNum <= 0.33) {
+        var link = document.querySelector('link[title="new world"]');
+      } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
+        var link = document.querySelector('link[title="jubala"]');
+      } else if (decidingNum > 0.66) {
+        var link = document.querySelector('link[title="benelux"]');
+      }
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="liquid state"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="sir walter"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
+      var link = document.querySelector('link[title="sommeliers roast"]');
+      setStoreTemplate(link);
+    } else if (userAnswers.wifi === 'not important' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'unrequired') {
+      var link = document.querySelector('link[title="forty two"]');
+      setStoreTemplate(link);
+    } else {
+      var link = document.querySelector('link[title="no match"]');
+      setStoreTemplate(link);
+    }
   };
 });
