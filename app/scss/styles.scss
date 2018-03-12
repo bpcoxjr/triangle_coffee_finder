@@ -314,6 +314,11 @@ html, body {
           color: $accent-color;
         }
       }
+      .or {
+        color: $primary-color;
+        font-family: $secondary-font;
+        text-transform: uppercase;
+      }
       .try-again-arrow {
         display: inline-block;
         margin-right: 0.25em;
