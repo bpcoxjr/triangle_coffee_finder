@@ -16,7 +16,7 @@ html, body {
   display: grid;
   grid-template-rows: 4fr 1fr;
   height: 100vh;
-  background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url(/images/openeye.jpg);
+  background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url(../images/openeye.jpg);
   filter: grayscale(15%);
   background-position: center center;
   background-repeat: no-repeat;
@@ -331,7 +331,7 @@ html, body {
             display: none; } }
 
 .marketing-site-hero {
-  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(/images/coffee_beans.jpg) top right no-repeat;
+  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../images/coffee_beans.jpg) top right no-repeat;
   filter: grayscale(15%);
   height: 100vh;
   background-size: cover;

@@ -43,7 +43,7 @@ html, body {
     rgba(255, 255, 255, 0.65),
     rgba(255, 255, 255, 0.65)
     ),
-  url(/images/openeye.jpg);
+  url(../images/openeye.jpg);
   filter: grayscale(15%);
   background-position: center center;
   background-repeat: no-repeat;
@@ -433,7 +433,7 @@ html, body {
     rgba(255, 255, 255, 0.85),
     rgba(255, 255, 255, 0.85)
     ),
-  url(/images/coffee_beans.jpg) top right no-repeat;
+  url(../images/coffee_beans.jpg) top right no-repeat;
   filter: grayscale(15%);
   height: 100vh;
   background-size: cover;
