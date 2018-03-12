@@ -231,7 +231,7 @@ $(document).ready(function() {
       var link = document.querySelector('link[title="market street"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
-      decidingNum = produceRandomNumber();
+      var decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
         var link = document.querySelector('link[title="perennial"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
@@ -250,7 +250,7 @@ $(document).ready(function() {
 
   const findDurhamCoffee = () => {
     if (userAnswers.wifi === 'not important' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
-      decidingNum = produceRandomNumber();
+      var decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
         var link = document.querySelector('link[title="baby scratch"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
@@ -260,7 +260,7 @@ $(document).ready(function() {
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
-      decidingNum = produceRandomNumber();
+      var decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
         var link = document.querySelector('link[title="cocoa cinnamon"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
@@ -291,7 +291,7 @@ $(document).ready(function() {
 
   const findRaleighCoffee = () => {
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
-      decidingNum = produceRandomNumber();
+      var decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
         var link = document.querySelector('link[title="brew"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
@@ -301,7 +301,7 @@ $(document).ready(function() {
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
-      decidingNum = produceRandomNumber();
+      var decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
         var link = document.querySelector('link[title="new world"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
