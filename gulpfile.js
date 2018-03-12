@@ -6,7 +6,7 @@ const concat = require("gulp-concat");
 const minifyHTML = require("gulp-htmlmin");
 const useref = require("gulp-useref");
 const jshint = require("gulp-jshint");
-const uglify = require("gulp-uglify");
+const uglify = require("gulp-uglifyes");
 const babel = require("gulp-babel");
 const imageMin = require("gulp-imagemin");
 const cache = require("gulp-cache");
@@ -75,12 +75,6 @@ gulp.task('autoprefixer', function() {
   .pipe(gulp.dest('dist/css'))
 });
 
-// push fonts to the dist folder
-gulp.task('fonts', function() {
-  return gulp.src('app/fonts/**/*')
-  .pipe(gulp.dest('dist/fonts'))
-})
-
 // make sure any ES6 JS works across all browsers
 gulp.task('babel', function() {
   return gulp.src('app/js/**/*.js')
@@ -104,6 +98,12 @@ gulp.task('js-hint', function() {
   return gulp.src('app/js/**/*.js')
   .pipe(jshint())
   .pipe(jshint.reporter('default'));
+});
+
+gulp.task('uglify', function() {
+  return gulp.src('app/js/**/*.js')
+  .pipe(uglify())
+  .pipe(gulp.dest('dist/js'))
 });
 
 // serve project so we can check it out in the browser and see changes live
@@ -136,7 +136,7 @@ gulp.task('copy-bower', function(){
 // main build task for constructing the dist folder
 gulp.task('build', ['browserSync'], function(callback) {
   runSequence('clean:dist',
-    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts', 'copy-bower'],
+    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'uglify', 'html', 'html templates', 'images', 'copy-bower'],
     callback
   )
   gulp.watch('dist/index.html', browserSync.reload);

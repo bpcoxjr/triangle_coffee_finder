@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log("jquery is ready");
 
   /*** loading animations ***/
   setTimeout(function() {
@@ -34,7 +33,6 @@ $(document).ready(function() {
     let scrollTop = $(window).scrollTop();
     let landingContainerHeight = $('#landing-container').outerHeight();
     if (scrollTop > landingContainerHeight) {
-      console.log('showing quiz');
       $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
       $('#question-number').text('1');
     }
@@ -46,7 +44,6 @@ $(document).ready(function() {
 
   $('.option-one').on('click', function() {
     let locationChoice = $(this).text();
-    console.log('location choice: ', locationChoice);
     $('#select-container-one').html(locationChoice).css({'width': 'auto', 'background': '#f1c404'});
     userAnswers.location = locationChoice;
     showQuestionTwo();
@@ -144,7 +141,6 @@ $(document).ready(function() {
     $('#select-container-five').html(seatingChoice).css({'width': 'auto', 'background': '#f1c404'})
     userAnswers.seating = seatingChoice;
     showCoffeeShopSuggestion();
-    console.log(userAnswers);
   });
 
   const showCoffeeShopSuggestion = () => {
@@ -178,14 +174,12 @@ $(document).ready(function() {
   });
 
   const setStoreTemplate = (link) => {
-    console.log('store template is: ', link);
     let template = link.import.querySelector('template');
     let clone = document.importNode(template.content, true);
     document.querySelector('#suggestion-container').appendChild(clone);
   };
 
   const determineSuggestion = () => {
-    console.log('determining suggestion...');
     if (userAnswers.location === 'Chapel Hill/Carrboro') {
       findChapelHillCarrboroCoffee();
     } else if (userAnswers.location === 'Durham') {
@@ -280,7 +274,6 @@ $(document).ready(function() {
   };
 
   const findRaleighCoffee = () => {
-    console.log('finding raleigh coffee...');
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
