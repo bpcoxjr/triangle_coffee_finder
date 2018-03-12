@@ -321,3 +321,10 @@ $(document).ready(function () {
     }
   };
 });
+
+setStoreTemplate = function setStoreTemplate(link) {
+  console.log('store template is: ', link);
+  var template = link.import.querySelector('template');
+  var clone = document.importNode(template.content, true);
+  document.querySelector('#suggestion-container').appendChild(clone);
+};
