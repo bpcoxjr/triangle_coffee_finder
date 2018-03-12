@@ -177,7 +177,7 @@ $(document).ready(function() {
     location.reload();
   });
 
-  setStoreTemplate = (link) => {
+  const setStoreTemplate = (link) => {
     console.log('store template is: ', link);
     let template = link.import.querySelector('template');
     let clone = document.importNode(template.content, true);
