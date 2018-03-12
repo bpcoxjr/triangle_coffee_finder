@@ -40,7 +40,7 @@ gulp.task("styles", function() {
     .pipe(postCSS({
       html: ["app/*.html"]
     }))
-    .pipe(gulp.dest("app/css"))
+    .pipe(gulp.dest("dist/css"))
 });
 
 //minify HTML files
@@ -130,7 +130,7 @@ gulp.task('clean:dist', function() {
 // main build task for constructing the dist folder
 gulp.task('build', ['browserSync'], function(callback) {
   runSequence('clean:dist',
-    ['sass', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts'],
+    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts'],
     callback
   )
   gulp.watch('dist/index.html', browserSync.reload);
