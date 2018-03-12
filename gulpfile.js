@@ -127,10 +127,16 @@ gulp.task('clean:dist', function() {
   return del.sync('dist');
 });
 
+//copy bower components to build folder
+gulp.task('copy-bower', function(){
+  gulp.src('./app/bower_components/**')
+    .pipe(gulp.dest('dist/bower_components'));
+});
+
 // main build task for constructing the dist folder
 gulp.task('build', ['browserSync'], function(callback) {
   runSequence('clean:dist',
-    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts'],
+    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'html', 'html templates', 'images', 'fonts', 'copy-bower'],
     callback
   )
   gulp.watch('dist/index.html', browserSync.reload);
