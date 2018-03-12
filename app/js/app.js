@@ -25,7 +25,7 @@ $(document).ready(function() {
       scrollTop: $('#quiz-container').offset().top
     }, 500);
     $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
-    $('#question-number').text('1');
+    // $('#question-number').html('1');
   });
 
   // fade in first question if scrolled to instead of 'clicked to'
@@ -34,7 +34,7 @@ $(document).ready(function() {
     let landingContainerHeight = $('#landing-container').outerHeight();
     if (scrollTop > landingContainerHeight) {
       $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
-      $('#question-number').text('1');
+      // $('#question-number').html('1');
     }
   });
 
@@ -50,7 +50,7 @@ $(document).ready(function() {
   });
 
   const showQuestionTwo = () => {
-    $('#question-number').text('2');
+    $('#question-number').html('2');
     $('#question-one-options').fadeOut();
     setTimeout(function() {
       $('#question-one-container').addClass('fadeOutUp');
@@ -73,7 +73,7 @@ $(document).ready(function() {
   });
 
   const showQuestionThree = () => {
-    $('#question-number').text('3');
+    $('#question-number').html('3');
     $('#question-two-options').fadeOut();
     setTimeout(function() {
       $('#question-two-container').addClass('fadeOutUp');
@@ -96,7 +96,7 @@ $(document).ready(function() {
   });
 
   const showQuestionFour = () => {
-    $('#question-number').text('4');
+    $('#question-number').html('4');
     $('#question-three-options').fadeOut();
     setTimeout(function() {
       $('#question-three-container').addClass('fadeOutUp');
@@ -121,7 +121,7 @@ $(document).ready(function() {
 
   // option 5 stuff...
   const showQuestionFive = () => {
-    $("#question-number").text('5');
+    $("#question-number").html('5');
     $('#question-four-options').fadeOut();
     setTimeout(function() {
       $('#question-four-container').addClass('fadeOutUp');
@@ -173,11 +173,22 @@ $(document).ready(function() {
     location.reload();
   });
 
-  const setStoreTemplate = (link) => {
+  const setStoreTemplate = (link, cityName) => {
     let template = link.import.querySelector('template');
     let clone = document.importNode(template.content, true);
     document.querySelector('#suggestion-container').appendChild(clone);
+    $('#city-name').text(cityName);
   };
+
+  const setYelpButton = (cityName) => {
+    if (cityName === 'Chapel Hill') {
+      $('#yelp-button').attr('href', 'https://www.yelp.com/search?find_desc=coffee+shops&find_loc=Chapel+Hill%2C+NC&ns=1');
+    } else if (cityName === 'Durham') {
+      $('#yelp-button').attr('href', 'https://www.yelp.com/search?find_desc=coffee+shops&find_loc=Durham,+NC');
+    } else if (cityName === 'Raleigh') {
+      $('#yelp-button').attr('href', 'https://www.yelp.com/search?find_desc=coffee+shops&find_loc=Raleigh,+NC');
+    }
+  }
 
   const determineSuggestion = () => {
     if (userAnswers.location === 'Chapel Hill/Carrboro') {
@@ -198,39 +209,41 @@ $(document).ready(function() {
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
       let decidingNum = produceRandomNumber();
       if (decidingNum > 0.5) {
-        var link = document.querySelector('link[title="open eye"]');
+        let link = document.querySelector('link[title="open eye"]');
       } else {
-        var link = document.querySelector('link[title="looking glass cafe"]');
+        let link = document.querySelector('link[title="looking glass cafe"]');
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="carolina coffee shop"]');
+      let link = document.querySelector('link[title="carolina coffee shop"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="joe van gogh ch"]');
+      let link = document.querySelector('link[title="joe van gogh ch"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'not important' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="caffe driade"]');
+      let link = document.querySelector('link[title="caffe driade"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="bread and butter"]');
+      let link = document.querySelector('link[title="bread and butter"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="market street"]');
+      let link = document.querySelector('link[title="market street"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
-        var link = document.querySelector('link[title="perennial"]');
+        let link = document.querySelector('link[title="perennial"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
-        var link = document.querySelector('link[title="gray squirrel"]');
+        let link = document.querySelector('link[title="gray squirrel"]');
       } else if (decidingNum > 0.66) {
-        var link = document.querySelector('link[title="coco bean"]');
+        let link = document.querySelector('link[title="coco bean"]');
       }
       setStoreTemplate(link);
     } else {
-      var link = document.querySelector('link[title="no match"]');
-      setStoreTemplate(link);
+      let link = document.querySelector('link[title="no match"]');
+      let cityName = 'Chapel Hill';
+      setStoreTemplate(link, cityName);
+      setYelpButton(cityName);
     }
   };
 
@@ -238,38 +251,40 @@ $(document).ready(function() {
     if (userAnswers.wifi === 'not important' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
-        var link = document.querySelector('link[title="baby scratch"]');
+        let link = document.querySelector('link[title="baby scratch"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
-        var link = document.querySelector('link[title="dulce"]');
+        let link = document.querySelector('link[title="dulce"]');
       } else if (decidingNum > 0.66) {
-        var link = document.querySelector('link[title="parker and otis"]');
+        let link = document.querySelector('link[title="parker and otis"]');
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
-        var link = document.querySelector('link[title="cocoa cinnamon"]');
+        let link = document.querySelector('link[title="cocoa cinnamon"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
-        var link = document.querySelector('link[title="bean traders"]');
+        let link = document.querySelector('link[title="bean traders"]');
       } else if (decidingNum > 0.66) {
-        var link = document.querySelector('link[title="triangle"]');
+        let link = document.querySelector('link[title="triangle"]');
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="kaffeinate"]');
+      let link = document.querySelector('link[title="kaffeinate"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="joe van gogh durham"]');
+      let link = document.querySelector('link[title="joe van gogh durham"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="saladelia"]');
+      let link = document.querySelector('link[title="saladelia"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="pine cone"]');
+      let link = document.querySelector('link[title="pine cone"]');
       setStoreTemplate(link);
     } else {
-      var link = document.querySelector('link[title="no match"]');
-      setStoreTemplate(link);
+      let link = document.querySelector('link[title="no match"]');
+      let cityName = 'Durham';
+      setStoreTemplate(link, cityName);
+      setYelpButton(cityName);
     }
   };
 
@@ -277,38 +292,40 @@ $(document).ready(function() {
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
-        var link = document.querySelector('link[title="brew"]');
+        let link = document.querySelector('link[title="brew"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
-        var link = document.querySelector('link[title="sola"]');
+        let link = document.querySelector('link[title="sola"]');
       } else if (decidingNum > 0.66) {
-        var link = document.querySelector('link[title="morning times"]');
+        let link = document.querySelector('link[title="morning times"]');
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
       decidingNum = produceRandomNumber();
       if (decidingNum <= 0.33) {
-        var link = document.querySelector('link[title="new world"]');
+        let link = document.querySelector('link[title="new world"]');
       } else if (decidingNum > 0.33 && decidingNum <= 0.66) {
-        var link = document.querySelector('link[title="jubala"]');
+        let link = document.querySelector('link[title="jubala"]');
       } else if (decidingNum > 0.66) {
-        var link = document.querySelector('link[title="benelux"]');
+        let link = document.querySelector('link[title="benelux"]');
       }
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'upbeat' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="liquid state"]');
+      let link = document.querySelector('link[title="liquid state"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="sir walter"]');
+      let link = document.querySelector('link[title="sir walter"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'desired' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'desired') {
-      var link = document.querySelector('link[title="sommeliers roast"]');
+      let link = document.querySelector('link[title="sommeliers roast"]');
       setStoreTemplate(link);
     } else if (userAnswers.wifi === 'not important' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'reflective' && userAnswers.seating === 'unrequired') {
-      var link = document.querySelector('link[title="forty two"]');
+      let link = document.querySelector('link[title="forty two"]');
       setStoreTemplate(link);
     } else {
-      var link = document.querySelector('link[title="no match"]');
-      setStoreTemplate(link);
+      let link = document.querySelector('link[title="no match"]');
+      let cityName = 'Raleigh';
+      setStoreTemplate(link, cityName);
+      setYelpButton(cityName);
     }
   };
 
