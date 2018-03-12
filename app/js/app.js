@@ -114,7 +114,7 @@ $(document).ready(function() {
   // new option 4 click method
   $('.option-four').on('click', function() {
     let feelingChoice = $(this).text();
-    $('#select-container-four').html(feelingChoice).css({'width': 'auto', 'background': '#f1c404'})
+    $('#select-container-four').html(feelingChoice).css({'width': 'auto', 'background': '#f1c404'});
     userAnswers.feeling = feelingChoice;
     showQuestionFive();
   });
@@ -138,7 +138,7 @@ $(document).ready(function() {
 
   $('.option-five').on('click', function() {
     let seatingChoice = $(this).text();
-    $('#select-container-five').html(seatingChoice).css({'width': 'auto', 'background': '#f1c404'})
+    $('#select-container-five').html(seatingChoice).css({'width': 'auto', 'background': '#f1c404'});
     userAnswers.seating = seatingChoice;
     showCoffeeShopSuggestion();
   });
@@ -189,7 +189,7 @@ $(document).ready(function() {
     } else if (cityName === 'Raleigh') {
       $('#yelp-button').attr('href', 'https://www.yelp.com/search?find_desc=coffee+shops&find_loc=Raleigh,+NC');
     }
-  }
+  };
 
   const determineSuggestion = () => {
     if (userAnswers.location === 'Chapel Hill/Carrboro') {
@@ -204,7 +204,7 @@ $(document).ready(function() {
   const produceRandomNumber= () => {
     const randomNumber = Math.random();
     return randomNumber;
-  }
+  };
 
   const findChapelHillCarrboroCoffee = () => {
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
