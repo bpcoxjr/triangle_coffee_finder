@@ -44,11 +44,11 @@ gulp.task("styles", function() {
 });
 
 //minify HTML files
-gulp.task("html", function() {
+/*gulp.task("html", function() {
   return gulp.src("app/*.html")
   .pipe(minifyHTML({collapseWhitespace: true}))
   .pipe(gulp.dest("dist"))
-});
+});*/
 
 gulp.task("html templates", function() {
   return gulp.src("app/templates/**/*.html")
@@ -136,7 +136,7 @@ gulp.task('copy-bower', function(){
 // main build task for constructing the dist folder
 gulp.task('build', ['browserSync'], function(callback) {
   runSequence('clean:dist',
-    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'uglify', 'html', 'html templates', 'images', 'copy-bower'],
+    ['sass', 'styles', 'babel', 'useref', 'js-hint', 'uglify', 'html templates', 'images', 'copy-bower'],
     callback
   )
   gulp.watch('dist/index.html', browserSync.reload);
