@@ -178,9 +178,11 @@ $(document).ready(function() {
     let clone = document.importNode(template.content, true);
     document.querySelector('#suggestion-container').appendChild(clone);
     $('#city-name').text(cityName);
+    console.log('city name');
   };
 
   const setYelpButton = (cityName) => {
+    console.log('setting yelp button');
     if (cityName === 'Chapel Hill') {
       $('#yelp-button').attr('href', 'https://www.yelp.com/search?find_desc=coffee+shops&find_loc=Chapel+Hill%2C+NC&ns=1');
     } else if (cityName === 'Durham') {
