@@ -177,12 +177,12 @@ $(document).ready(function() {
     location.reload();
   });
 
-  /*setStoreTemplate = (link) => {
+  setStoreTemplate = (link) => {
     console.log('store template is: ', link);
     let template = link.import.querySelector('template');
     let clone = document.importNode(template.content, true);
     document.querySelector('#suggestion-container').appendChild(clone);
-  };*/
+  };
 
   const determineSuggestion = () => {
     console.log('determining suggestion...');
@@ -320,10 +320,3 @@ $(document).ready(function() {
   };
 
 });
-
-setStoreTemplate = (link) => {
-  console.log('store template is: ', link);
-  let template = link.import.querySelector('template');
-  let clone = document.importNode(template.content, true);
-  document.querySelector('#suggestion-container').appendChild(clone);
-};
