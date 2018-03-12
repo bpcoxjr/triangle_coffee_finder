@@ -178,7 +178,6 @@ $(document).ready(function() {
     let clone = document.importNode(template.content, true);
     document.querySelector('#suggestion-container').appendChild(clone);
     $('#city-name').text(cityName);
-    console.log('city name');
   };
 
   const setYelpButton = (cityName) => {
@@ -210,7 +209,7 @@ $(document).ready(function() {
   const findChapelHillCarrboroCoffee = () => {
     if (userAnswers.wifi === 'a necessity' && userAnswers.food === 'unnecessary' && userAnswers.feeling === 'productive' && userAnswers.seating === 'desired') {
       let decidingNum = produceRandomNumber();
-      if (decidingNum > 0.5) {
+      if (decidingNum >= 0.5) {
         let link = document.querySelector('link[title="open eye"]');
       } else {
         let link = document.querySelector('link[title="looking glass cafe"]');
