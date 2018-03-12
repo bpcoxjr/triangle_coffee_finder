@@ -221,6 +221,11 @@ html, body {
       .suggestion-container .center-suggestion-info .info-button-container .info-button:hover {
         color: #ffffff;
         background: #c0392b; }
+        .suggestion-container .center-suggestion-info .info-button-container .info-button:hover .yelp {
+          color: #ffffff; }
+    .suggestion-container .center-suggestion-info .info-button-container .yelp {
+      margin: 0.25em;
+      color: #c0392b; }
     .suggestion-container .center-suggestion-info .info-button-container .website {
       width: 30vmin;
       margin: 0;

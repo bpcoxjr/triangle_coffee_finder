@@ -283,7 +283,14 @@ html, body {
         &:hover {
           color: $plain-old-white;
           background: $secondary-color;
+          .yelp {
+            color: $plain-old-white;
+          }
         }
+      }
+      .yelp {
+        margin: 0.25em;
+        color: $secondary-color;
       }
       .website {
         width: 30vmin;
