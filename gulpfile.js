@@ -58,7 +58,7 @@ gulp.task("html templates", function() {
 
 // optimize images
 gulp.task("images", function() {
-  return gulp.src("app/images/**/*.+(png|jpg|gif|svg|ico)")
+  return gulp.src("app/images/**/*.+(png|jpg|gif|svg)")
     .pipe(cache(imageMin({
       interlaced: true
     })))
