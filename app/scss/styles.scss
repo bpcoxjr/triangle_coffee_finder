@@ -252,20 +252,16 @@ html, body {
       .shop-name {
         font-family: $header-font;
         font-size: 7vmax;
-        margin: 0 3em 0.25em;
+        margin: 0 1em 0.25em;
         color: $primary-color;
-        @media screen and (max-width: $small-screen-width) {
-          font-size: 4em;
-        }
       }
       .shop-city {
         font-family: $primary-font;
         font-size: 2vmax;
         color: $secondary-color;
-        margin-top: 0;
+        margin: 0 auto;
         @media screen and (max-width: $small-screen-width) {
-          font-size: 1em;
-          margin-bottom: 0;
+          width: 50%;
         }
       }
     }

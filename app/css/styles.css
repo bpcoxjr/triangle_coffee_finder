@@ -190,20 +190,16 @@ html, body {
     .suggestion-container .center-suggestion-info .suggestion-text .shop-name {
       font-family: "Abril Fatface", cursive;
       font-size: 7vmax;
-      margin: 0 3em 0.25em;
+      margin: 0 1em 0.25em;
       color: #2c3e50; }
-      @media screen and (max-width: 480px) {
-        .suggestion-container .center-suggestion-info .suggestion-text .shop-name {
-          font-size: 4em; } }
     .suggestion-container .center-suggestion-info .suggestion-text .shop-city {
       font-family: "Montserrat", sans-serif;
       font-size: 2vmax;
       color: #c0392b;
-      margin-top: 0; }
+      margin: 0 auto; }
       @media screen and (max-width: 480px) {
         .suggestion-container .center-suggestion-info .suggestion-text .shop-city {
-          font-size: 1em;
-          margin-bottom: 0; } }
+          width: 50%; } }
   .suggestion-container .center-suggestion-info .info-button-container {
     margin-top: 1em;
     display: flex;
