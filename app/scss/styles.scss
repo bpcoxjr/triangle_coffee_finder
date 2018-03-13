@@ -33,22 +33,24 @@ html, body {
 }
 
 .landing-container {
-
+  height: 100vh;
   display: grid;
   grid-template-rows: 4fr 1fr;
-
-  height: 100vh;
-  background:
-    linear-gradient(
-    rgba(255, 255, 255, 0.65),
-    rgba(255, 255, 255, 0.65)
-    ),
-  url(../images/openeye.jpg);
-  filter: grayscale(15%);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  /*** necessary to fix firebox background flickering issue ***/
+  &::before {
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)),
+      url('../images/openeye.jpg');
+    background-size: cover;
+    will-change: transform;
+    z-index: -1;
+    overflow: hidden;
+  }
   .landing-container-elements {
     @include flex-center;
     .landing-header {
