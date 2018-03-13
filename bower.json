@@ -1,0 +1,24 @@
+{
+  "name": "triangle_coffee_finder",
+  "description": "Application to help users find indie coffee shops in the triangle area of North Carolina",
+  "main": "index.js",
+  "authors": [
+    "B. Patrick Cox",
+    "Jr."
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bpcoxjr/triangle_coffee_finder",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.1.0",
+    "jquery": "^3.3.1",
+    "animate.css": "^3.5.2"
+  }
+}
