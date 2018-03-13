@@ -148,6 +148,20 @@
     </div>
   </div>
 
+  <script>
+    /*HTML imports feature detection & polyfill*/
+    (function() {
+      if ('registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template')) {
+        console.log('web components supported!');
+      } else {
+        console.log('using polyfill!');
+        var e = document.createElement('script');
+        e.src = 'bower_components/webcomponentsjs/webcomponents-lite.js';
+        document.body.appendChild(e);
+      }
+    })();
+  </script>
+
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
