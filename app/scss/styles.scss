@@ -167,6 +167,7 @@ html, body {
       font-size: 1.5em;
       text-align: center;
       .questions {
+        height: 0;
         color: $primary-color;
         margin-top: 0;
         margin-bottom: 0;
@@ -193,6 +194,7 @@ html, body {
         cursor: pointer;
       }
       .select-options {
+        height: 0;
         display: none;
         list-style-type: none;
         color: $plain-old-white;
