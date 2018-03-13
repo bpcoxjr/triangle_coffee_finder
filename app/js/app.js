@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+  // HTML imports feature detection & polyfill
+  (function() {
+    if ('registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template')) {
+    } else {
+      var e = document.createElement('script');
+      e.src = '/bower_components/webcomponentsjs/webcomponents-lite.js';
+      document.body.appendChild(e);
+    }
+  })();
+
   /*** loading animations ***/
   setTimeout(function() {
     $('.coffee-finder').addClass('bounceInLeft');
