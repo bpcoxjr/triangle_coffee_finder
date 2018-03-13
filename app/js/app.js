@@ -168,11 +168,6 @@ $(document).ready(function() {
     $('#suggestion-header').html(headersArray[randomArrayPosition]);
   };
 
-  /*** reset app ***/
-  /*$(document.body).on('click', '.try-again-container', function() {
-    document.location.reload(true);
-  });*/
-
   const setStoreTemplate = (link, cityName) => {
     var template = link.import.querySelector('template');
     var clone = document.importNode(template.content, true);
@@ -332,7 +327,7 @@ $(document).ready(function() {
 
 });
 
+// mobile workaround
 var reloadApp = function() {
-  console.log('reloading');
   document.location.reload(true);
 }
