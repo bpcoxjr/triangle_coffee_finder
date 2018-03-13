@@ -332,7 +332,7 @@ $(document).ready(function() {
 
 });
 
-const reloadApp = () => {
+var reloadApp = function() {
   console.log('reloading');
   document.location.reload(true);
 }
