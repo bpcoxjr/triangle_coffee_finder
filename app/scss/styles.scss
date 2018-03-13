@@ -176,16 +176,18 @@ html, body {
       }
       .contain-period {
         display: inline-block;
+        // border-bottom: 3px solid $secondary-color;
+        // margin: 0 5px 5px 10px;
         @media screen and (max-width: 600px) {
           display: block;
         }
       }
       .select-container {
-        display: inline-flex;
         border-bottom: 3px solid $secondary-color;
+        margin: 0 5px 0 10px;
+        display: inline-flex;
         height: 30px;
         width: 150px;
-        margin: 0 5px 5px 10px;
         cursor: pointer;
       }
       .select-options {

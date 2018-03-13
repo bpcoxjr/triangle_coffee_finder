@@ -133,11 +133,11 @@ html, body {
           .quiz-container .quiz-subcontainer .questions-container .contain-period {
             display: block; } }
       .quiz-container .quiz-subcontainer .questions-container .select-container {
-        display: inline-flex;
         border-bottom: 3px solid #c0392b;
+        margin: 0 5px 0 10px;
+        display: inline-flex;
         height: 30px;
         width: 150px;
-        margin: 0 5px 5px 10px;
         cursor: pointer; }
       .quiz-container .quiz-subcontainer .questions-container .select-options {
         display: none;
