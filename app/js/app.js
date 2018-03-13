@@ -170,7 +170,7 @@ $(document).ready(function() {
 
   /*** reset app ***/
   $(document.body).on('click', '.try-again-container', function() {
-    location.reload();
+    document.location.reload(true);
   });
 
   const setStoreTemplate = (link, cityName) => {
