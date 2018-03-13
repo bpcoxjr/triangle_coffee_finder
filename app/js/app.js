@@ -169,9 +169,9 @@ $(document).ready(function() {
   };
 
   /*** reset app ***/
-  $(document.body).on('click', '.try-again-container', function() {
+  /*$(document.body).on('click', '.try-again-container', function() {
     document.location.reload(true);
-  });
+  });*/
 
   const setStoreTemplate = (link, cityName) => {
     var template = link.import.querySelector('template');
@@ -331,3 +331,8 @@ $(document).ready(function() {
   };
 
 });
+
+const reloadApp = () => {
+  console.log('reloading');
+  document.location.reload(true);
+}
