@@ -32,7 +32,7 @@ $(document).ready(function() {
   $(window).scroll(function() {
     var scrollTop = $(window).scrollTop();
     var landingContainerHeight = $('#landing-container').outerHeight();
-    if (scrollTop > landingContainerHeight) {
+    if (scrollTop > (landingContainerHeight * .66)) {
       $('#quiz-subcontainer').fadeIn(2000).css('display', 'flex');
       // $('#question-number').html('1');
     }
